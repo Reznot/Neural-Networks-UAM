@@ -96,7 +96,7 @@ def Perceptron(c):
         else:
             counter = 0
 
-    print(f"c = {c}     t = {t}")
+    print(f"c = {c}     t = {t}  wektor wag = {w}")
 
 
 Perceptron(1)
