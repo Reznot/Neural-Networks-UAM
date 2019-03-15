@@ -58,7 +58,7 @@ def calculate_Wmatrix(z0, z1):
 
     for i in range(25):
         for j in range(25):
-            W[i][j] = (1.0 / 25.0) * (z0[i] * z0[j] + z1[i] * z1[j])
+            W[i][j] = 1.0 / 25.0 * (z0[i] * z0[j] + z1[i] * z1[j])
     return W
 
 
@@ -92,7 +92,7 @@ def print_results(vec):
             print("*", end="")
         if i % 5 == 4:
             print()
-
+    print("\n")
 
 z0 = generate_z0("normal")
 z0_ = generate_z0("disturbed")
