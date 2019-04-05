@@ -3,7 +3,7 @@
 #Python
 
 def getF(xt):
-    F = 2 * pow(xt[0], 2) + 2 * pow(xt[1], 2) + pow(xt[2], 2) - 2 * xt[0] * xt[1] * xt[2] - 2 * xt[1] + 3
+    F = 2 * pow(xt[0], 2.0) + (2 * pow(xt[1], 2.0)) + pow(xt[2], 2) - (2 * xt[0] * xt[1]) - 2 * xt[1] * xt[2] - 2 * xt[0] + 3
     return F
 
 
@@ -35,13 +35,13 @@ def gradient(xt_prev, f_name):
     c = 0.01
     flag = True
     if f_name == 'f':
-        xt_new = []
+        xt_new = [0.0, 0.0, 0.0]
         while flag:
-            xt_new.append(xt_prev[0] - c * (4.0 * xt_prev[0] - 2.0 * xt_prev[1] - 2.0))
-            xt_new.append(xt_prev[1] - c * (-2.0 * xt_prev[0] + 4.0 * xt_prev[1] - 2.0 * xt_prev[2]))
-            xt_new.append(xt_prev[2] - c * (-2.0 * xt_prev[1] + 2.0 * xt_prev[2]))
+            xt_new[0] = (xt_prev[0] - c * (4.0 * xt_prev[0] - 2.0 * xt_prev[1] - 2.0))
+            xt_new[1] = (xt_prev[1] - c * (-2.0 * xt_prev[0] + 4.0 * xt_prev[1] - 2.0 * xt_prev[2]))
+            xt_new[2] = (xt_prev[2] - c * (-2.0 * xt_prev[1] + 2.0 * xt_prev[2]))
             flag = max(xt_new, xt_prev, 'f')
-            xt_prev = xt_new
+            xt_prev = xt_new[:]
         print(f'\nf:{xt_new}')
         print(f'x = {xt_new[0]:.3f}')
         print(f'y = {xt_new[1]:.3f}')
@@ -49,19 +49,19 @@ def gradient(xt_prev, f_name):
         print(f'f(x,y,z)= {getF(xt_new):.3f}')
 
     if f_name == 'g':
-        xt_new = []
+        xt_new = [0.0, 0.0]
         while flag:
-            xt_new.append(xt_prev[0] - c * (12 * pow(xt_prev[0], 3) + 12 * pow(xt_prev[0], 2) - 24 * xt_prev[0]))
-            xt_new.append(xt_prev[1] - c * ((24 * xt_prev[1]) - 24))
+            xt_new[0] = (xt_prev[0] - c * (12 * pow(xt_prev[0], 3.0) + 12 * pow(xt_prev[0], 2.0) - 24 * xt_prev[0]))
+            xt_new[1] = (xt_prev[1] - c * ((24 * xt_prev[1]) - 24))
             flag = max(xt_new, xt_prev, 'g')
-            xt_prev = xt_new
+            xt_prev = xt_new[:]
         print('\ng:')
         print(f'x = {xt_new[0]:.3f}')
         print(f'y = {xt_new[1]:.3f}')
-        print(f'f(x,y,z)= {getG(xt_new):.3f}')
+        print(f'f(x,y)= {getG(xt_new):.3f}')
 
 
 xt = [1, 0, 1]
 gradient(xt, 'f')
-xt = [4, 4]
+xt = [4.0, 4.0]
 gradient(xt, 'g')
