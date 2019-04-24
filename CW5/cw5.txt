@@ -130,7 +130,7 @@ def train():
         w = w_new[:]
         counter = counter + 1
 
-    print(f'iteracja: {counter}')
+    print('iteracja: ' + str(counter))
     print('wagi: ')
     for i in range(2):
         for j in range(3):
